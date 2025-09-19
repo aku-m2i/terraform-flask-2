@@ -81,6 +81,9 @@ resource "kubernetes_deployment" "flask" {
         labels = {
           app = "flask-app"
         }
+        annotations = {
+          "configmap-index-hash" = md5(var.flask_code)
+        }
       }
 
       spec {
